@@ -1,31 +1,74 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, Car, Droplets, Shield } from "lucide-react";
+import { Sparkles, Car, Droplets, Shield, CheckCircle } from "lucide-react";
 
 const services = [
   {
     icon: Car,
-    title: "Exterior Detailing",
-    description: "Complete exterior wash, clay bar treatment, wax, and tire shine for a showroom finish.",
-    price: "From $80"
+    title: "Deluxe Exterior Detail",
+    description: "Complete exterior transformation with premium care and protection.",
+    inclusions: [
+      "Wash & Rinse",
+      "Clay Bar Treatment", 
+      "Polish",
+      "Wax",
+      "Tire Shine",
+      "Window Cleaning"
+    ],
+    pricing: {
+      sedan: "$80",
+      suv: "$90", 
+      largeSuv: "$100"
+    }
   },
   {
     icon: Sparkles,
-    title: "Interior Detailing",
-    description: "Deep cleaning of seats, carpets, dashboard, and all interior surfaces with premium products.",
-    price: "From $70"
-  },
-  {
-    icon: Shield,
-    title: "Paint Protection",
-    description: "Ceramic coating and paint protection film to keep your vehicle looking new for years.",
-    price: "From $150"
+    title: "Deluxe Interior Detail",
+    description: "Deep interior cleaning and conditioning for a fresh, pristine cabin.",
+    inclusions: [
+      "Vacuum Seats & Carpets",
+      "Shampoo Seats",
+      "Shampoo Carpets",
+      "Wipe Down Dashboard",
+      "Clean Door Panels",
+      "Window Cleaning"
+    ],
+    pricing: {
+      sedan: "$80",
+      suv: "$90",
+      largeSuv: "$100"
+    }
   },
   {
     icon: Droplets,
-    title: "Full Service",
-    description: "Complete interior and exterior detailing package for the ultimate vehicle transformation.",
-    price: "From $140"
+    title: "Full Deluxe Package",
+    description: "Complete interior and exterior detailing for the ultimate vehicle transformation.",
+    inclusions: [
+      "All Exterior Services",
+      "All Interior Services",
+      "Complete Vehicle Protection"
+    ],
+    pricing: {
+      sedan: "$150",
+      suv: "$170",
+      largeSuv: "$190"
+    }
+  },
+  {
+    icon: Shield,
+    title: "Add-On Services",
+    description: "Enhanced protection and specialized treatments available upon request.",
+    inclusions: [
+      "Paint Protection Film",
+      "Ceramic Coating",
+      "Headlight Restoration",
+      "Engine Bay Cleaning"
+    ],
+    pricing: {
+      sedan: "Quote",
+      suv: "Quote",
+      largeSuv: "Quote"
+    }
   }
 ];
 
@@ -35,10 +78,10 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Our Services
+            Deluxe Detail Services
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Professional detailing services tailored to keep your vehicle in pristine condition
+            Professional detailing packages with transparent pricing based on your vehicle size
           </p>
         </div>
 
@@ -54,17 +97,50 @@ const Services = () => {
                   <service.icon className="h-8 w-8 text-blue-600" />
                 </div>
                 <CardTitle className="text-xl text-slate-900">{service.title}</CardTitle>
-                <CardDescription className="text-blue-600 font-semibold text-lg">
-                  {service.price}
-                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 text-center leading-relaxed">
+              <CardContent className="space-y-4">
+                <p className="text-slate-600 text-center text-sm leading-relaxed">
                   {service.description}
                 </p>
+                
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-slate-800 text-sm">Includes:</h4>
+                  <ul className="space-y-1">
+                    {service.inclusions.map((item, itemIndex) => (
+                      <li key={itemIndex} className="flex items-center text-xs text-slate-600">
+                        <CheckCircle className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100">
+                  <h4 className="font-semibold text-slate-800 text-sm mb-2">Pricing:</h4>
+                  <div className="space-y-1 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-slate-600">Sedan:</span>
+                      <span className="font-semibold text-blue-600">{service.pricing.sedan}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-600">SUV:</span>
+                      <span className="font-semibold text-blue-600">{service.pricing.suv}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-600">Large SUV/4x4:</span>
+                      <span className="font-semibold text-blue-600">{service.pricing.largeSuv}</span>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <p className="text-slate-600 text-sm">
+            All services include premium products and professional application. Contact us for custom packages and quotes.
+          </p>
         </div>
       </div>
     </section>
